@@ -12,6 +12,8 @@ import {setCredentials} from '../slices/authSlice';
 import {useGetMyOrdersQuery} from '../slices/orderApiSlice';
 import {FaTimes} from 'react-icons/fa'
 import {useGetProductsQuery} from '../slices/productsApiSlice';
+import Paginate from '../components/Paginate';
+
 
 const ProfileScreen = () => {
     const [name,setName]=useState('');
@@ -23,9 +25,13 @@ const ProfileScreen = () => {
 
     const {userInfo}=useSelector((state)=>state.auth);
 
+    const {pageNumber,keyword}=useParams();
+    
     const [updateProfile,{isLoading:loadingUpdateProfile}]=useProfileMutation();
 
-    const {data:orders,isLoading,error}=useGetMyOrdersQuery();
+    
+
+    const {data,isLoading,error}=useGetProductsQuery({keyword,pageNumber});
     
 
     useEffect(()=>{
@@ -100,32 +106,25 @@ const ProfileScreen = () => {
     
     <thead>
         <tr>
-           <th>ID</th>
-           <th>DATE</th>
-           <th>NAME</th>
-           <th>ACTION NEED</th>
-           <th>ACTION TAKEN</th>
+           <th>player name</th>
+           <th>Date of birth</th>
+           <th>Injury Type</th>
+           <th>Action Take</th>
+           <th>Action Needed</th>
+           <th>Description</th>
            <th></th>
         </tr>
     </thead>
     <tbody>
-        {orders.map((order)=>(
-            <tr key={order._id}>
-                <td>{order._id}</td>
-                <td>{order.createdAt.substring(0,10)}</td>
-                <td>{order.totalPrice}</td>
-                <td>{order.isPaid?(
-                    order.paidAt.substring(0,10)
-                ):(<FaTimes color='red'/>)}</td>
-                <td>{order.isDelivered?(order.deliveredAt.substring(0,10)):(<FaTimes color='red'/>)}</td>
-                <td>
-                    <LinkContainer to={`/order/${order._id}`}>
-                    {order.isPaid?(
-                        <Button className='btn-sm ' variant='light'>Details</Button>
-                ):(<Button className='btn-sm ' variant='light'> Pay Now</Button>)}
-                        
-                    </LinkContainer>
-                </td>
+        {data.product.filter(productt => productt.name === name).map((productt) =>(
+            <tr key={productt._id}>
+                <td>{productt.name}</td>
+                <td>{productt.price}</td>
+                <td>{productt.brand}</td>
+                <td>{productt.category}</td>
+                <td>{productt.countInStock}</td>
+                <td>{productt.description}</td>
+                <td>View</td>
             </tr>
         ))}
     </tbody>
