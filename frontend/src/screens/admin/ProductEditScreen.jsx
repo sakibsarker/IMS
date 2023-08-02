@@ -5,14 +5,16 @@ import {FaTimes,FaEdit,FaTrash} from 'react-icons/fa'
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
 import FormContainer from '../../components/FormContainer'
+import {useGetUsersQuery} from '../../slices/usersApiSlice';
 import {useUpdateProductMutation,useGetProductDetailsQuery,useUploadProductImageMutation} from '../../slices/productsApiSlice';
 import { useSelector,useDispatch } from 'react-redux/';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import Autosuggest from 'react-autosuggest';
 
 const ProductEditScreen = () => {
-    const {id:productId}=useParams();
 
+    const {id:productId}=useParams();
 
     const [name,setName]=useState('');
     const [price,setPrice]=useState(0);
@@ -27,6 +29,38 @@ const ProductEditScreen = () => {
     const [updateProduct,{isLoading:loadingUpdating}] =useUpdateProductMutation();
 
     const [uploadProductImage,{isLoading:loadingUpload}] =useUploadProductImageMutation();
+
+
+// add
+const [validationError, setValidationError] = useState(null);
+    const {data:users, isLoading:usersLoading, error:usersError} = useGetUsersQuery();
+
+    const [suggestions, setSuggestions] = useState([]);
+
+
+    const getSuggestions = value => {
+        const inputValue = value.trim().toLowerCase();
+        const inputLength = inputValue.length;
+
+        return inputLength === 0 ? [] : users.filter(user =>
+            user.name.toLowerCase().slice(0, inputLength) === inputValue
+        );
+    };
+
+    const getSuggestionValue = suggestion => suggestion.name;
+
+    const theme = {
+        input: 'form-control',
+        inputOpen: 'form-control',
+        inputFocused: 'form-control',
+        suggestionsContainer: 'dropdown',
+        suggestionsContainerOpen: 'dropdown open',
+        suggestionsList: `dropdown-menu ${suggestions.length ? 'show' : ''}`,
+        suggestion: 'dropdown-item',
+        suggestionHighlighted: 'dropdown-item active'
+      };
+
+    // add
 
 
 
@@ -46,6 +80,15 @@ const ProductEditScreen = () => {
 
     const submitHandler=async(e)=>{
         e.preventDefault();
+        // add
+        const userExists = users.find(user => user.name === name);
+
+        // If it doesn't exist, set the validation error and return.
+        if (!userExists) {
+            setValidationError('Player name must be a username!');
+            return;
+        }
+        //add
         const updatedProduct={
             productId,
             name,
@@ -96,6 +139,50 @@ const ProductEditScreen = () => {
                 <Form onSubmit={submitHandler}>
                     <Form.Group controlId='name'>
                         <Form.Label>player name</Form.Label>
+                        <Autosuggest
+                                    theme={theme}
+                                    suggestions={suggestions}
+                                    onSuggestionsFetchRequested={({ value }) => {
+                                        setSuggestions(getSuggestions(value));
+                                    }}
+                                    onSuggestionsClearRequested={() => {
+                                        setSuggestions([]);
+                                    }}
+                                    getSuggestionValue={getSuggestionValue}
+                                    renderSuggestion={getSuggestionValue}
+                                    inputProps={{
+                                        placeholder: 'Enter name',
+                                        value: name,
+                                        onChange: (_, { newValue }) => {
+                                            setName(newValue);
+                                        }
+                                    }}
+                                />
+                                {validationError && <div className="invalid-feedback d-block">{validationError}</div>}
+                        {/* <Autosuggest
+                        theme={theme}
+                                    suggestions={suggestions}
+                                    onSuggestionsFetchRequested={({ value }) => {
+                                        setSuggestions(getSuggestions(value));
+                                    }}
+                                    onSuggestionsClearRequested={() => {
+                                        setSuggestions([]);
+                                    }}
+                                    getSuggestionValue={getSuggestionValue}
+                                    renderSuggestion={getSuggestionValue}
+                                    inputProps={{
+                                        placeholder: 'Enter name',
+                                        value: name,
+                                        onChange: (_, { newValue }) => {
+                                            setName(newValue);
+                                        }
+                                    }}
+                                /> */}
+                    </Form.Group>
+
+
+                    {/* <Form.Group controlId='name'>
+                        <Form.Label>player name</Form.Label>
                         <Form.Control
                         type='text'
                         placeholder='Enter name'
@@ -103,7 +190,7 @@ const ProductEditScreen = () => {
                         onChange={(e)=>setName(e.target.value)}
                         >
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> */}
 
                     <Form.Group controlId='price'>
                         <Form.Label>Date of birth</Form.Label>

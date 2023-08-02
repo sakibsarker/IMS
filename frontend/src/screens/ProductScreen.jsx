@@ -74,7 +74,8 @@ const ProductScreen = () => {
     <Form.Control
     type='text'
     value={products.name}
-    readOnly>
+    disabled
+    >
     </Form.Control>
   </Form.Group>
 
@@ -83,7 +84,7 @@ const ProductScreen = () => {
     <Form.Control
     type='text'
     value={products.price}
-    readOnly>
+    disabled>
     </Form.Control>
   </Form.Group>
 
@@ -92,7 +93,7 @@ const ProductScreen = () => {
     <Form.Control
     type='text'
     value={products.brand}
-    readOnly>
+    disabled>
     </Form.Control>
   </Form.Group>
 
@@ -102,7 +103,7 @@ const ProductScreen = () => {
     <Form.Control
     type='text'
     value={products.category}
-    readOnly>
+    disabled>
     </Form.Control>
   </Form.Group>
 
@@ -112,7 +113,7 @@ const ProductScreen = () => {
     <Form.Control
     type='text'
     value={products.countInStock}
-    readOnly>
+    disabled>
     </Form.Control>
   </Form.Group>
 
@@ -121,7 +122,7 @@ const ProductScreen = () => {
     <Form.Control
     type='text'
     value={products.description}
-    readOnly>
+    disabled>
     </Form.Control>
   </Form.Group>
 
@@ -130,34 +131,34 @@ const ProductScreen = () => {
 {/* remove */}
 
     <Meta title={products.name}/>
-        <Row>
+        {/* <Row>
           <Col md={5} style={{margin:'20px'}}>
           <Rating value={products.rating} text={`${products.numReviews} reviews`}/>
           </Col>
          
-        </Row>
-        <Row className='review'>
+        </Row> */}
+        <Row className='review' style={{marginTop:'50px'}}>
           <Col md={6}>
 
-          {products.reviews.length===0 && <Message>No Reviews</Message>}
+          {products.reviews.length===0 && <Message>No Comments</Message>}
           <ListGroup variant='flush'>
             {products.reviews.map((review)=>(
               <ListGroup.Item key={review._id}>
                 <strong>{review.name}</strong>
-                <Rating value={review.rating}/>
+                {/* <Rating value={review.rating}/> */}
                 <p>{review.createdAt.substring(0.10)}</p>
                 <p>{review.comment}</p>
               </ListGroup.Item>
             ))}
             <ListGroup.Item>
 
-              <h2>Write a customer review</h2>
+              <h2>Write a players comments</h2>
               {loadingReview && <Loader/>}
 
               {
                 userInfo?(
                   <Form onSubmit={createReviewHandaler}>
-                    <Form.Group controlId='rating'>
+                    {/* <Form.Group controlId='rating'>
                       <Form.Label>Rating</Form.Label>
                       <Form.Control
                       as='select'
@@ -173,7 +174,7 @@ const ProductScreen = () => {
 
 
                       </Form.Control>
-                    </Form.Group>
+                    </Form.Group> */}
                     <Form.Group className='py-2'>
                       <Form.Label>Comment</Form.Label>
                       <Form.Control

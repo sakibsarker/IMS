@@ -11,6 +11,7 @@ import {useProfileMutation} from '../slices/usersApiSlice';
 import {setCredentials} from '../slices/authSlice';
 import {useGetMyOrdersQuery} from '../slices/orderApiSlice';
 import {FaTimes} from 'react-icons/fa'
+import {useGetProductsQuery} from '../slices/productsApiSlice';
 
 const ProfileScreen = () => {
     const [name,setName]=useState('');
@@ -25,7 +26,7 @@ const ProfileScreen = () => {
     const [updateProfile,{isLoading:loadingUpdateProfile}]=useProfileMutation();
 
     const {data:orders,isLoading,error}=useGetMyOrdersQuery();
-
+    
 
     useEffect(()=>{
         if(userInfo){
@@ -96,13 +97,14 @@ const ProfileScreen = () => {
    :error?(<Message variant='danger'>{error?.data?.message||error.error}</Message>)
    :(<>
    <Table striped hover responsive className='table-sm'>
+    
     <thead>
         <tr>
            <th>ID</th>
            <th>DATE</th>
-           <th>TOTAL</th>
-           <th>PAID</th>
-           <th>DELIVERED</th>
+           <th>NAME</th>
+           <th>ACTION NEED</th>
+           <th>ACTION TAKEN</th>
            <th></th>
         </tr>
     </thead>
