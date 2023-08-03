@@ -8,20 +8,19 @@ const Product = ({prduct}) => {
 <Table striped hover responsive className='table-sm w-100'>
 <thead>
 <tr>
-  <th>Player Id</th>
   <th>Profile</th>
   <th>Player Name</th>
   <th>Date of birth</th>
   <th>Injury Type</th>
   <th>Action taken</th>
   <th>Action needed</th>
+  <th></th>
   
 </tr>
 </thead>
 <tbody>
 
     <tr key={prduct._id}>
-      <td>{prduct._id}</td>
       <td><Image src={`http://localhost:5000${prduct.image}`} style={{height:"40px",width: "40px",borderRadius:'50px' }}/></td>
       <td>{prduct.name}</td>
       <td>{prduct.price}</td>

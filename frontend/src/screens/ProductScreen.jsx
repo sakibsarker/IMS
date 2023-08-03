@@ -4,7 +4,6 @@ import { Link,useNavigate } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button,Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import {useGetProductDetailsQuery,useCreateReviewMutation} from '../slices/productsApiSlice'
-import {addToCart} from '../slices/cartSlice'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { useDispatch,useSelector } from 'react-redux'
@@ -32,11 +31,6 @@ const ProductScreen = () => {
 
   const {userInfo}=useSelector((state)=>state.auth);
 
-
-  const addToCartHandler=()=>{
-    dispatch(addToCart({...products,qty}))
-    nagivate('/cart')
-  }
 
   const createReviewHandaler=async(e)=>{
     e.preventDefault()

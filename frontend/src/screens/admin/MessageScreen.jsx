@@ -8,10 +8,6 @@ const MessageScreen = () => {
   const { id } = useParams()
   const { data: message, isLoading, error } = useGetMessageDetailsQuery(id)
 
-  useEffect(() => {
-    // Additional logic here, if necessary
-  }, [id])
-
   return isLoading ? (
     <Loader/>
   ) : error ? (

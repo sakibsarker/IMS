@@ -25,7 +25,7 @@ const RegisterScreen = () => {
 //re direct after login shipping
   const {search}=useLocation();
   const sp=new URLSearchParams(search);
-  const redirect=sp.get('redirect')||'/';
+  const redirect=sp.get('redirect')||'/dashboard';
   
   useEffect(()=>{
     if(userInfo){

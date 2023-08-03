@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import {useProfileMutation} from '../slices/usersApiSlice';
 import {setCredentials} from '../slices/authSlice';
-import {useGetMyOrdersQuery} from '../slices/orderApiSlice';
 import {FaTimes} from 'react-icons/fa'
 import {useGetProductsQuery} from '../slices/productsApiSlice';
 import Paginate from '../components/Paginate';

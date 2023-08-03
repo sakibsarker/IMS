@@ -25,7 +25,8 @@ const OrderListScreen = () => {
   <Table striped hover responsive className='table-sm'>
      <thead>
         <tr>
-           <th>Date and Time</th>
+           <th>Date</th>
+           <th>Time</th>
            <th>Email</th>
            <th>Message</th>
         </tr>
@@ -34,13 +35,12 @@ const OrderListScreen = () => {
 
       {message.map((sms)=>(
             <tr key={sms._id}>
-              <td>{sms._id}</td>
+              <td>{new Date(sms.createdAt).toLocaleDateString("en-GB")}</td>
+              <td>{new Date(sms.createdAt).toLocaleTimeString()}</td>
               <td>{sms.contactus.email}</td>
               <td>{sms.contactus.message}</td>
               <td>
-              <td>
           <Link to={`/admin/message/${sms._id}`}>View</Link>
-        </td>
               </td>
             </tr>
           ))
@@ -53,11 +53,3 @@ const OrderListScreen = () => {
 }
 
 export default OrderListScreen
-
-
-     {/* <td>
-                <LinkContainer to={`/admin/product/${productt._id}/edit`}>
-               <Button variant='light' className='btn-sm mx-2'><FaEdit color='green'/> Edit</Button>
-                </LinkContainer>
-                <Button variant='light' className='btn-sm mx-2' onClick={()=>deleteHandler(productt._id)}><FaTrash color='red'/></Button>
-              </td> */}

@@ -1,16 +1,24 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Container, Row, Col,Table } from 'react-bootstrap';
 import Product from '../components/Product';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams,useNavigate } from 'react-router-dom';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
+import { useSelector } from 'react-redux';
 const HomeScreen = () => {
+  const { userInfo } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const {pageNumber,keyword}=useParams();
-  
+  useEffect(() => {
+  // If the user is not logged in, redirect them to the login page
+  if (!userInfo) {
+    navigate('/login');
+  }
+}, [userInfo, navigate]);
   const {data,isLoading,error}=useGetProductsQuery({keyword,pageNumber});
 
 
@@ -20,7 +28,7 @@ const HomeScreen = () => {
     {isLoading?(<><Loader/></>):error?(<Message variant='danger'>{error?.data?.message||error.error}</Message>):(
     <>
     <>
-    <h1 style={{color:'black',textAlign:'center'}}>New Injury</h1>
+    <h1 style={{color:'black',textAlign:'center'}}>Payers Injury</h1>
     
         {data.product.map((productt) => (
           <Col className='table-sm w-100' key={productt._id} sm={12} md={6} lg={4} xl={3}>

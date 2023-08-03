@@ -1,73 +1,75 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useLogoutMutation } from '../slices/usersApiSlice'
+import { logout } from '../slices/authSlice'
+import { useNavigate } from 'react-router-dom'
+import { ListGroup } from 'react-bootstrap'
 
-const links = [
-  {
-    name: 'Link 1',
-    path: '/link1',
-    children: [
-      {
-        name: 'Link 1.1',
-        path: '/link1-1',
-        children: [
-          {
-            name: 'Link 1.1.1',
-            path: '/link1-1-1',
-          },
-          {
-            name: 'Link 1.1.2',
-            path: '/link1-1-2',
-          },
-        ],
-      },
-      {
-        name: 'Link 1.2',
-        path: '/link1-2',
-      },
-    ],
-  },
-  {
-    name: 'Link 2',
-    path: '/link2',
-  },
-];
+const Sidebar = () => {
+  const { userInfo } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const [logoutApiCall] = useLogoutMutation()
 
-const Navigation = ({ items }) => (
-  <ul style={styles.list}>
-    {items.map((item, index) => (
-      <li key={index} style={styles.listItem}>
-        <Link to={item.path}>{item.name}</Link>
-        {item.children && <Navigation items={item.children} />}
-      </li>
-    ))}
-  </ul>
-);
-
-const Sidebar = () => (
-  <div style={styles.sidebar}>
-    <h2>Sidebar</h2>
-    <Navigation items={links} />
-  </div>
-);
-
-const styles = {
-  sidebar: {
-    width: '200px',
-    height: '100vh',
-    position: 'fixed',
-    left: '0',
-    top: '0',
-    background: '#333',
-    color: '#fff',
-    padding: '20px'
-  },
-  list: {
-    listStyleType: 'none',
-    padding: '0'
-  },
-  listItem: {
-    marginBottom: '10px'
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap()
+      dispatch(logout())
+      navigate('/login')
+    } catch (error) {
+      console.log(error)
+    }
   }
-};
 
-export default Sidebar;
+  if (!userInfo) {
+    return null
+  }
+
+  return (
+    <ListGroup>
+     
+      <ListGroup.Item>
+        <Link style={{ textDecoration: 'none' }} to='/dashboard'>Dashboard</Link>
+      </ListGroup.Item>
+      <ListGroup.Item>
+        <Link style={{ textDecoration: 'none' }} to='/'>Player Injury</Link>
+      </ListGroup.Item>
+
+      {userInfo && (
+        <>
+          <ListGroup.Item>
+            <Link style={{ textDecoration: 'none' }} to='/profile'>Profile</Link>
+            
+          </ListGroup.Item>
+          {!userInfo.isAdmin &&
+          <ListGroup.Item>
+            <Link style={{ textDecoration: 'none' }} to='/contactus'>Contact Us</Link>
+          </ListGroup.Item>
+}
+          
+          {userInfo.isAdmin && (
+            <>
+              <ListGroup.Item>
+                <Link style={{ textDecoration: 'none' }} to='/admin/userlist'>Player List</Link>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Link style={{ textDecoration: 'none' }} to='/admin/productlist'>Add Injury</Link>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Link style={{ textDecoration: 'none' }} to='/admin/orderlist'>Contact List</Link>
+              </ListGroup.Item>
+            </>
+          )}
+
+          <ListGroup.Item onClick={logoutHandler}>
+            Logout
+          </ListGroup.Item>
+        </>
+      )}
+
+    </ListGroup>
+  )
+}
+
+export default Sidebar
