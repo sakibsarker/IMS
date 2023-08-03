@@ -65,10 +65,12 @@ const ProductScreen = () => {
     <>
 
     {/* add */}
+    <Image src={`http://localhost:5000${products.image}`} alt={products.name} fluid style={{height:'50px'}}/>
+          {/* <Image src={products.image} alt={products.image} fluid/> */}
+
+        
     
 <Form >
-<Image src={`http://localhost:5000${products.image}`} alt={products.name} fluid style={{height:'50px'}}/>
-          {/* <Image src={products.image} alt={products.image} fluid/> */}
   <Form.Group controlId='name'>
     <Form.Label>player name</Form.Label>
     <Form.Control

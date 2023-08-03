@@ -7,39 +7,54 @@ import Message from '../components/Message'
 import { useDispatch,useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useCreateContactMutation,useGetContactDetailsQuery } from '../slices/contactSlice';
 
 const ContactUs = () => {
-  return (
-    <>
-     <Form >
-     <Form.Group controlId='name'>
-    <Form.Label>Your email</Form.Label>
-    <Form.Control
-    type='text'
-    placeholder='Enter your email'
-    // value={products.name}
-    >
-    </Form.Control>
-  </Form.Group>
-                    
-                    <Form.Group className='py-2'>
-                      <Form.Label>Your Message</Form.Label>
-                      <Form.Control
-                      as='textarea'
-                      row='3'
-                      placeholder='Type your message'
-                    
-                      >
-                      </Form.Control>
-                    </Form.Group>
-                    <Button
-                    
-                    type='submit'
-                    variant='primary'
-                    >Send Message</Button>
-                  </Form>
-    </>
-  )
+
+    const [email, setEmail] = useState('')
+    const [message, setMessage] = useState('')
+    const [createContact, { isLoading, isError, isSuccess }] = useCreateContactMutation()
+
+    const submitHandler = async (e) => {
+        e.preventDefault()
+        try {
+            await createContact({ email, message }).unwrap()
+        } catch (err) {
+            console.error('Failed to create contact: ', err)
+        }
+    }
+
+    return (
+        <Form onSubmit={submitHandler}>
+            <Form.Group controlId='email'>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                    type='email'
+                    placeholder='Enter email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='message'>
+                <Form.Label>Message</Form.Label>
+                <Form.Control
+                    as='textarea'
+                    placeholder='Enter message'
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                ></Form.Control>
+            </Form.Group>
+
+            <Button type='submit' variant='primary' style={{marginTop:'30px'}}>
+                Send
+            </Button>
+            {isLoading && <Loader />}
+            {isError && <Message variant='danger'>Something went wrong...</Message>}
+            {isSuccess && <Message variant='success'>Message sent successfully!</Message>}
+        </Form>
+    )
+
 }
 
 export default ContactUs

@@ -22,7 +22,7 @@ const Product = ({prduct}) => {
 
     <tr key={prduct._id}>
       <td>{prduct._id}</td>
-      <Image src={`http://localhost:5000${prduct.image}`} style={{height:"40px",width: "40px",borderRadius:'50px' }}/>
+      <td><Image src={`http://localhost:5000${prduct.image}`} style={{height:"40px",width: "40px",borderRadius:'50px' }}/></td>
       <td>{prduct.name}</td>
       <td>{prduct.price}</td>
       <td>{prduct.category}</td>

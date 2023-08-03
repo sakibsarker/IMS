@@ -12,6 +12,7 @@ const ProductRoutes=require('./routes/ProductRoute');
 const UserRoutes=require('./routes/UserRoute');
 const OrderRoutes=require('./routes/OrderRoute');
 const UploadRoutes=require('./routes/UploadRoute');
+const ContactRoutes=require('./routes/ContactRoute');
 
 const {notFound,errorHandler}=require('./middleware/errorMiddleware')
 
@@ -36,6 +37,8 @@ app.use(cookieParser());
 // app.use('/', HomeRoutes);
 
 app.use('/api/products',ProductRoutes);
+
+app.use('/api/contactus',ContactRoutes);
 
 app.use('/api/users',UserRoutes);
 

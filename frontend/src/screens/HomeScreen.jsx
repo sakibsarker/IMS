@@ -23,7 +23,7 @@ const HomeScreen = () => {
     <h1 style={{color:'black',textAlign:'center'}}>New Injury</h1>
     
         {data.product.map((productt) => (
-          <Col striped hover responsive className='table-sm w-100' key={productt._id} sm={12} md={6} lg={4} xl={3}>
+          <Col className='table-sm w-100' key={productt._id} sm={12} md={6} lg={4} xl={3}>
             <Product prduct={productt}/>
           </Col>
         ))}
