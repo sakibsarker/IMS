@@ -6,17 +6,20 @@ import { productsApiSlice } from './slices/productsApiSlice';
 import {Outlet} from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Sidebar from './components/SideBar';
+
 
 function App() {
   return (
     <>
     <Header/>
+    {/* <Sidebar/> */}
     <main className="py-3">
       <Container>
       <Outlet/>
+      <Footer/>
       </Container>
       </main>
-    <Footer/>
     <ToastContainer />
     </>
   )

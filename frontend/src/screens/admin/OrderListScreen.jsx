@@ -18,20 +18,17 @@ const OrderListScreen = () => {
 
 
   return <>
-  <h1>Orders</h1>
+  <h1>Contact Us List</h1>
   {isLoading?<Loader/>
   :error?<Message variant="Danger">{error?.data?.message||error.message}</Message>
   :(
   <Table striped hover responsive className='table-sm'>
      <thead>
         <tr>
-           <th>ID</th>
-           <th>Username</th>
-           <th>DATE</th>
-           <th>TOTAL</th>
-           <th>PAID</th>
-           <th>DELIVERED</th>
-           <th></th>
+           <th>Date and Time</th>
+           <th>Email</th>
+           <th>Message</th>
+           
            
         </tr>
     </thead>
@@ -48,7 +45,7 @@ const OrderListScreen = () => {
                 <td>{order.isDelivered?(order.deliveredAt.substring(0,10)):(<FaTimes color='red'/>)}</td>
                 <td>
                     <LinkContainer to={`/order/${order._id}`}>
-                        <Button className='btn-sm ' variant='light'>Details</Button>         
+                        <Button className='btn-sm ' variant='light'>View</Button>         
                     </LinkContainer>
                 </td>
             </tr>

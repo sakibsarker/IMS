@@ -2,7 +2,6 @@ import React from 'react'
 import './assets/styles/bootstrap.custom.css'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import store from './store'
 import {HelmetProvider} from 'react-helmet-async'
 import App from './App'
@@ -30,6 +29,7 @@ import ProductListScreen from './screens/admin/ProductListScreen'
 import ProductEditScreen from './screens/admin/ProductEditScreen'
 import UserListScreen from './screens/admin/UserListScreen'
 import UserEditScreen from './screens/admin/UserEditScreen'
+import ContactUs from './screens/ContactUs'
 
 
 const router=createBrowserRouter(
@@ -43,6 +43,7 @@ const router=createBrowserRouter(
       <Route path='/cart' element={<CartScreen/>}/>
       <Route path='/login' element={<LoginScreen/>}/>
       <Route path='/register' element={<RegisterScreen/>}/>
+      <Route path='/contactus' element={<ContactUs/>}/>
      
       <Route path='' element={<PrivateRoute/>}>
       <Route path='/shipping' element={<ShippingScreen/>}/>
@@ -71,9 +72,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <HelmetProvider>
 
     <Provider store={store}>
-      <PayPalScriptProvider deferLoading={true}>
       <RouterProvider router={router}/>
-      </PayPalScriptProvider>
     </Provider>
     
     </HelmetProvider>
