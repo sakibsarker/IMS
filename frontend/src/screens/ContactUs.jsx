@@ -25,12 +25,14 @@ const ContactUs = () => {
     }
 
     return (
+        <Row className="justify-content-md-center"> 
+            <Col xs={12} md={6}>
         <Form onSubmit={submitHandler}>
-            <Form.Group controlId='email'>
-                <Form.Label>Email</Form.Label>
+            <Form.Group controlId='name'>
+                <Form.Label>Name</Form.Label>
                 <Form.Control
-                    type='email'
-                    placeholder='Enter email'
+                    type='text'
+                    placeholder='Enter name'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
@@ -53,6 +55,8 @@ const ContactUs = () => {
             {isError && <Message variant='danger'>Something went wrong...</Message>}
             {isSuccess && <Message variant='success'>Message sent successfully!</Message>}
         </Form>
+        </Col>
+        </Row>
     )
 
 }

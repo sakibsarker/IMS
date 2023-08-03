@@ -44,7 +44,7 @@ const Sidebar = () => {
           </ListGroup.Item>
           {!userInfo.isAdmin &&
           <ListGroup.Item>
-            <Link style={{ textDecoration: 'none' }} to='/contactus'>Contact Us</Link>
+            <Link style={{ textDecoration: 'none' }} to='/contactus'>Send Message</Link>
           </ListGroup.Item>
 }
           
@@ -57,7 +57,7 @@ const Sidebar = () => {
                 <Link style={{ textDecoration: 'none' }} to='/admin/productlist'>Add Injury</Link>
               </ListGroup.Item>
               <ListGroup.Item>
-                <Link style={{ textDecoration: 'none' }} to='/admin/orderlist'>Contact List</Link>
+                <Link style={{ textDecoration: 'none' }} to='/admin/orderlist'>Message List</Link>
               </ListGroup.Item>
             </>
           )}
