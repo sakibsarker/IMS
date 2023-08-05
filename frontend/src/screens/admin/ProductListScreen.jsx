@@ -69,10 +69,10 @@ const ProductListScreen = () => {
         <tr>
           {/* <th>Player Id</th> */}
           <th>Player Name</th>
-          <th>Date of birth</th>
+          <th>Date of Birth</th>
           <th>Injury Type</th>
-          <th>Action taken</th>
-          <th>Action needed</th>
+          <th>Action Taken</th>
+          <th>Action Needed</th>
           <th></th>
         </tr>
         </thead>

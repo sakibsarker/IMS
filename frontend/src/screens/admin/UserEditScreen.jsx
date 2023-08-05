@@ -90,10 +90,10 @@ const UserEditScreen = () => {
                     </Form.Group>
 
                     <Form.Group controlId='isAdmin' className='py-2' >
-                        <Form.Label>Admin</Form.Label>
+                        <Form.Label>Coaches</Form.Label>
                             <Form.Check
                             type='checkbox'
-                            label='Is Admin'
+                            label='Is Coaches'
                             checked={isAdmin}
                             onChange={(e)=>setIsAdmin(e.target.checked)}
                             >

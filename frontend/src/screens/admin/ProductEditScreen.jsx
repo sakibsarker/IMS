@@ -138,7 +138,7 @@ const [validationError, setValidationError] = useState(null);
             :error?<Message variant='danger'>{error}</Message>:(
                 <Form onSubmit={submitHandler}>
                     <Form.Group controlId='name'>
-                        <Form.Label>player name</Form.Label>
+                        <Form.Label>Player Name</Form.Label>
                         <Autosuggest
                                     theme={theme}
                                     suggestions={suggestions}
@@ -162,7 +162,7 @@ const [validationError, setValidationError] = useState(null);
                     </Form.Group>
 
                     <Form.Group controlId='price'>
-                        <Form.Label>Date of birth</Form.Label>
+                        <Form.Label>Date of Birth</Form.Label>
                         <Form.Control
                         type='data'
                         placeholder='Enter date'
@@ -203,7 +203,7 @@ const [validationError, setValidationError] = useState(null);
                     </Form.Group>
 
                     <Form.Group controlId='cetegory'>
-                        <Form.Label>Action taken</Form.Label>
+                        <Form.Label>Action Taken</Form.Label>
                         <Form.Control
                         type='text'
                         placeholder='Enter cetegory'
@@ -214,7 +214,7 @@ const [validationError, setValidationError] = useState(null);
                     </Form.Group>
 
                     <Form.Group controlId='countinstock'>
-                        <Form.Label>Action needed</Form.Label>
+                        <Form.Label>Action Needed</Form.Label>
                         <Form.Control
                         type='text'
                         placeholder='Enter countInStock'
