@@ -64,10 +64,12 @@ const ProfileScreen = () => {
     <Col md={3}>
         <h2>User Profile</h2>
         <Form onSubmit={submitHandler}>
+            
             <Form.Group controlId='name' className='my-2'>
                <Form.Label>Name</Form.Label>
                <Form.Control type='name' placeholder='Enter name' value={name}
-               onChange={(e)=>setName(e.target.value)}>
+               onChange={(e)=>setName(e.target.value)}
+               disabled={userInfo ? !userInfo.isAdmin : true}>
                </Form.Control>
             </Form.Group>
 
@@ -105,12 +107,11 @@ const ProfileScreen = () => {
     
     <thead>
         <tr>
-           <th>player name</th>
-           <th>Date of birth</th>
+           <th>Name</th>
+           <th>Date of Birth</th>
            <th>Injury Type</th>
-           <th>Action Take</th>
+           <th>Action Taken</th>
            <th>Action Needed</th>
-           <th>Description</th>
            <th></th>
         </tr>
     </thead>
@@ -122,8 +123,7 @@ const ProfileScreen = () => {
                 <td>{productt.brand}</td>
                 <td>{productt.category}</td>
                 <td>{productt.countInStock}</td>
-                <td>{productt.description}</td>
-                <td>View</td>
+                <td><Link to={`/product/${productt._id}`}>View</Link></td>
             </tr>
         ))}
     </tbody>

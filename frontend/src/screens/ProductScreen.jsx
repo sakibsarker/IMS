@@ -52,21 +52,33 @@ const ProductScreen = () => {
 
   return (
     <>
-     <Link className='btn btn-white my-2' to='/'>
-        Go Back</Link>
     {isLoading?(<Loader/>):error?(<Message variant='danger'>{error?.data?.message||error.error}</Message>)
     :(
     <>
-
-    {/* add */}
-    <Image src={`http://localhost:5000${products.image}`} alt={products.name} fluid style={{height:'50px'}}/>
-          {/* <Image src={products.image} alt={products.image} fluid/> */}
-
-        
+    <Row className="justify-content-md-center"> 
+            <Col xs={12} md={8}>
     
+    <Image src={`http://localhost:5000${products.image}`} alt={products.name} fluid style={{
+    height: '80px', 
+    width:'80px',
+    borderRadius: '100px', 
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '10px'
+  }}/>
+          {/* <Image style={{
+    height: '50px', 
+    borderRadius: '50px', 
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '10px'
+  }} src={products.image} alt={products.image} fluid/> */}
+
 <Form >
   <Form.Group controlId='name'>
-    <Form.Label>player name</Form.Label>
+    <Form.Label>Player Name</Form.Label>
     <Form.Control
     type='text'
     value={products.name}
@@ -76,7 +88,7 @@ const ProductScreen = () => {
   </Form.Group>
 
   <Form.Group controlId='name'>
-    <Form.Label>Date of birth</Form.Label>
+    <Form.Label>Date of Birth</Form.Label>
     <Form.Control
     type='text'
     value={products.price}
@@ -113,28 +125,19 @@ const ProductScreen = () => {
     </Form.Control>
   </Form.Group>
 
-  <Form.Group controlId='name'>
+  {/* <Form.Group controlId='name'>
     <Form.Label>Description</Form.Label>
     <Form.Control
     type='text'
     value={products.description}
     disabled>
     </Form.Control>
-  </Form.Group>
+  </Form.Group> */}
 
 </Form>
-
-{/* remove */}
-
     <Meta title={products.name}/>
-        {/* <Row>
-          <Col md={5} style={{margin:'20px'}}>
-          <Rating value={products.rating} text={`${products.numReviews} reviews`}/>
-          </Col>
-         
-        </Row> */}
         <Row className='review' style={{marginTop:'50px'}}>
-          <Col md={6}>
+          <Col md={12}>
 
           {products.reviews.length===0 && <Message>No Comments</Message>}
           <ListGroup variant='flush'>
@@ -154,23 +157,6 @@ const ProductScreen = () => {
               {
                 userInfo?(
                   <Form onSubmit={createReviewHandaler}>
-                    {/* <Form.Group controlId='rating'>
-                      <Form.Label>Rating</Form.Label>
-                      <Form.Control
-                      as='select'
-                      value={rating}
-                      onChange={(e)=>setRating(e.target.value)}
-                      >
-                        <option value=''>Select...</option>
-                        <option value='1'>1- Poor</option>
-                        <option value='2'>2- Fair</option>
-                        <option value='3'>3- Good</option>
-                        <option value='4'>4- Very Good</option>
-                        <option value='5'>5- Excellent</option>
-
-
-                      </Form.Control>
-                    </Form.Group> */}
                     <Form.Group className='py-2'>
                       <Form.Label>Comment</Form.Label>
                       <Form.Control
@@ -193,6 +179,8 @@ const ProductScreen = () => {
             </ListGroup.Item>
           </ListGroup>
           </Col>
+        </Row>
+        </Col>
         </Row>
         {/* <Button className='btn-block' type='button' disabled={products.countInStock===0}
                         onClick={addToCartHandler}>

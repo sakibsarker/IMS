@@ -67,7 +67,7 @@ const ProductListScreen = () => {
       <Table striped hover responsive className='table-sm'>
         <thead>
         <tr>
-          <th>Player Id</th>
+          {/* <th>Player Id</th> */}
           <th>Player Name</th>
           <th>Date of birth</th>
           <th>Injury Type</th>
@@ -79,7 +79,7 @@ const ProductListScreen = () => {
         <tbody>
           {data.product.map((productt)=>(
             <tr key={productt._id}>
-              <td>{productt._id}</td>
+              {/* <td>{productt._id}</td> */}
               <td>{productt.name}</td>
               <td>{productt.price}</td>
               <td>{productt.category}</td>

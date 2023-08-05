@@ -33,15 +33,15 @@ const Sidebar = () => {
         <Link style={{ textDecoration: 'none' }} to='/dashboard'>Dashboard</Link>
       </ListGroup.Item>
       <ListGroup.Item>
-        <Link style={{ textDecoration: 'none' }} to='/'>Player Injury</Link>
+            <Link style={{ textDecoration: 'none' }} to='/profile'>Profile</Link>
+            
+          </ListGroup.Item>
+      <ListGroup.Item>
+        <Link style={{ textDecoration: 'none' }} to='/'>Injured List</Link>
       </ListGroup.Item>
 
       {userInfo && (
         <>
-          <ListGroup.Item>
-            <Link style={{ textDecoration: 'none' }} to='/profile'>Profile</Link>
-            
-          </ListGroup.Item>
           {!userInfo.isAdmin &&
           <ListGroup.Item>
             <Link style={{ textDecoration: 'none' }} to='/contactus'>Send Message</Link>

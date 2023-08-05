@@ -8,12 +8,12 @@ const Product = ({prduct}) => {
 <Table striped hover responsive className='table-sm w-100'>
 <thead>
 <tr>
-  <th>Profile</th>
+  <th>Picture</th>
   <th>Player Name</th>
-  <th>Date of birth</th>
+  <th>Date of Birth</th>
   <th>Injury Type</th>
-  <th>Action taken</th>
-  <th>Action needed</th>
+  <th>Action Taken</th>
+  <th>Action Needed</th>
   <th></th>
   
 </tr>

@@ -74,7 +74,7 @@ const [validationError, setValidationError] = useState(null);
            setBrand(product.brand);
            setCategory(product.category);
            setCountInStock(product.countInStock);
-           setDescription(product.description);
+        //    setDescription(product.description);
         }
     },[product]);
 
@@ -159,44 +159,13 @@ const [validationError, setValidationError] = useState(null);
                                     }}
                                 />
                                 {validationError && <div className="invalid-feedback d-block">{validationError}</div>}
-                        {/* <Autosuggest
-                        theme={theme}
-                                    suggestions={suggestions}
-                                    onSuggestionsFetchRequested={({ value }) => {
-                                        setSuggestions(getSuggestions(value));
-                                    }}
-                                    onSuggestionsClearRequested={() => {
-                                        setSuggestions([]);
-                                    }}
-                                    getSuggestionValue={getSuggestionValue}
-                                    renderSuggestion={getSuggestionValue}
-                                    inputProps={{
-                                        placeholder: 'Enter name',
-                                        value: name,
-                                        onChange: (_, { newValue }) => {
-                                            setName(newValue);
-                                        }
-                                    }}
-                                /> */}
                     </Form.Group>
-
-
-                    {/* <Form.Group controlId='name'>
-                        <Form.Label>player name</Form.Label>
-                        <Form.Control
-                        type='text'
-                        placeholder='Enter name'
-                        value={name}
-                        onChange={(e)=>setName(e.target.value)}
-                        >
-                        </Form.Control>
-                    </Form.Group> */}
 
                     <Form.Group controlId='price'>
                         <Form.Label>Date of birth</Form.Label>
                         <Form.Control
-                        type='text'
-                        placeholder='Enter price'
+                        type='data'
+                        placeholder='Enter date'
                         value={price}
                         onChange={(e)=>setPrice(e.target.value)}
                         >
@@ -257,7 +226,7 @@ const [validationError, setValidationError] = useState(null);
 
 
                     
-                    <Form.Group controlId='description'>
+                    {/* <Form.Group controlId='description'>
                         <Form.Label>Description</Form.Label>
                         <Form.Control
                         type='text'
@@ -266,7 +235,7 @@ const [validationError, setValidationError] = useState(null);
                         onChange={(e)=>setDescription(e.target.value)}
                         >
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> */}
                     <Button type='submit' value='primary' className='my-2'>Update</Button>
                 </Form>
             )

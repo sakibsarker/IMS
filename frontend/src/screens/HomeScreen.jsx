@@ -6,7 +6,6 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import Paginate from '../components/Paginate';
-import ProductCarousel from '../components/ProductCarousel';
 import { useSelector } from 'react-redux';
 const HomeScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -28,7 +27,7 @@ const HomeScreen = () => {
     {isLoading?(<><Loader/></>):error?(<Message variant='danger'>{error?.data?.message||error.error}</Message>):(
     <>
     <>
-    <h1 style={{color:'black',textAlign:'center'}}>Payers Injury</h1>
+    {/* <h1 style={{color:'black',textAlign:'center'}}>Payers Injury</h1> */}
     
         {data.product.map((productt) => (
           <Col className='table-sm w-100' key={productt._id} sm={12} md={6} lg={4} xl={3}>

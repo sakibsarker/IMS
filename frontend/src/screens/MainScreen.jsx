@@ -28,7 +28,7 @@ const MainScreen = () => {
           <Card className="mb-3 h-100">
             <Card.Body>
               <MdOutlinePersonalInjury size={30} />
-              <Card.Title>Players Injury</Card.Title>
+              <Card.Title>Injured Player</Card.Title>
             </Card.Body>
           </Card>
         </Link>
@@ -73,7 +73,7 @@ const MainScreen = () => {
           <Card className="mb-3 h-100">
             <Card.Body>
               <MdOutlineMarkEmailUnread size={30} />
-              <Card.Title>Message List</Card.Title>
+              <Card.Title>Messages</Card.Title>
             </Card.Body>
           </Card>
         </Link>
