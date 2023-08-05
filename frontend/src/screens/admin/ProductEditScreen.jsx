@@ -74,7 +74,7 @@ const [validationError, setValidationError] = useState(null);
            setBrand(product.brand);
            setCategory(product.category);
            setCountInStock(product.countInStock);
-        //    setDescription(product.description);
+           setDescription(product.description);
         }
     },[product]);
 
