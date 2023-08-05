@@ -195,7 +195,7 @@ const [validationError, setValidationError] = useState(null);
                     <Form.Group controlId='price'>
                         <Form.Label>Date of birth</Form.Label>
                         <Form.Control
-                        type='number'
+                        type='text'
                         placeholder='Enter price'
                         value={price}
                         onChange={(e)=>setPrice(e.target.value)}
@@ -247,7 +247,7 @@ const [validationError, setValidationError] = useState(null);
                     <Form.Group controlId='countinstock'>
                         <Form.Label>Action needed</Form.Label>
                         <Form.Control
-                        type='number'
+                        type='text'
                         placeholder='Enter countInStock'
                         value={countInStock}
                         onChange={(e)=>setCountInStock(e.target.value)}
