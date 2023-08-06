@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import FormContainer from '../components/FormContainer'
+import { Container,Row,Col,Form ,Button} from 'react-bootstrap'
 import Alert from 'react-bootstrap/Alert';
 import {useResetPasswordMutation} from '../slices/usersApiSlice'
+import Loader from '../components/Loader'
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
-// import {RESET_URL} from '../constants'
 
 const ResetScreen= () => {
 
@@ -22,65 +24,37 @@ const ResetScreen= () => {
             await resetPassword(email);
             setShow(true);
             setEmail("");
-            console.log("Email sent")
+            toast.success("Email Sent");
           } catch (error) {
-            console.log("Error: ", error);
+            toast.error(error?.data?.message||error.error)
           }
-
-
-        // const res = await fetch(RESET_URL, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         email
-        //     })
-        // });
-
-        // const data = await res.json();
-        // console.log(data);
-        // if (!data || data.status !== 200) {
-        //     console.log("error")
-        //   }
-        // else {
-        //     setShow(true);
-        //     setEmail("")
-        //     console.log("Email sent")
-        // }
     }
 
     return (
         <>
-            {
-                show ? <Alert variant="primary" onClose={() => setShow(false)} dismissible>
-                    Your Email Succesfully Send
-                </Alert> : ""
-            }
-            <div className="container mt-2">
-                <div className='d-flex justify-content-center'>
-                    <h2>Send Email With React & NodeJs</h2>
-                    
-                </div>
-                <div className="d-flex justify-content-center">
-                    <Form className='mt-2 col-lg-6'>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Enter Your Email</Form.Label>
-                            <Form.Control type="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" />
-                        </Form.Group>
-                        <Button variant="primary" type="submit" onClick={sendEmail}>
-                            Send
-                        </Button>
-                    </Form>
-                </div>
-
-            </div>
+    <FormContainer>
+      <h1>Rest Password</h1>
+      <Form>
+        <Form.Group controlId="formBasicEmail">
+         <Form.Label>Enter Email</Form.Label>
+            <Form.Control type="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" />
+        </Form.Group>
+                <Button type='submit' value='primary' className='mt-2' onClick={sendEmail}>
+                    Send Email
+                </Button>
+        </Form>
+     
+    </FormContainer>
 
         </>
     )
 }
 
 export default ResetScreen
+
+
+
+
 
 
 
