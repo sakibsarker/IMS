@@ -66,8 +66,8 @@ export const usersApiSlice=apiSlice.injectEndpoints({
                 body:{email},
             })
         }),
-        resetPasswordWithToken:builder.mutation({
-            query:({token,password})=>({
+        setNewPassword:builder.mutation({
+            query:({password,token})=>({
                 url:`${USERS_URL}/reset/${token}`,
                 method:'POST',
                 body:{password},
@@ -88,6 +88,8 @@ export const {useLoginMutation,
     useGetUserDetailsQuery,
     useUpdateUserMutation,
     useResetPasswordMutation,
+    useSetNewPasswordMutation
+    
 
 }=usersApiSlice;
 

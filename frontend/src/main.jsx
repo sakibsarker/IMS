@@ -43,7 +43,7 @@ const router=createBrowserRouter(
       <Route path='/register' element={<RegisterScreen/>}/>
       <Route path='/contactus' element={<ContactUs/>}/>
       <Route path='/reset' element={<ResetScreen/>}/>
-      <Route path='/setpassword' element={<SetpassScreen/>}/>
+      <Route path='/reset/:token' element={<SetpassScreen/>}/>
       
      
 

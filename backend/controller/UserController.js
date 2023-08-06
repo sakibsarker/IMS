@@ -175,42 +175,6 @@ exports.updateUsers=asycHandler(async (req, res) => {
   
 
 // send mail
-
-// exports.postResetPassword=asycHandler(async(req, res) => {
-//   const { email } = req.body;
-//   try {
-
-//       const transporter = nodemailer.createTransport({
-//           service: "gmail",
-//           auth: {
-//               user: process.env.EMAIL,
-//               pass: process.env.PASSWORD
-//           }
-//       });
-
-//       const mailOptions = {
-//           from: process.env.EMAIL,
-//           to: email,
-//           subject: "Rest Password from Injury management sytemem",
-//           html: '<p>Rest Password url</p> <h1> You successfully sent Email </h2>'
-//       };
-
-//       transporter.sendMail(mailOptions, (error, info) => {
-//           if (error) {
-//               console.log("Error" + error)
-//           } else {
-//               console.log("Email sent:" + info.response);
-//               res.status(201).json({status:201,info})
-//           }
-//       })
-
-//   } catch (error) {
-//       console.log("Error" + error);
-//       res.status(401).json({status:401,error})
-//   }
-// });
-
-
 //new with crypto
 
 exports.postResetPassword = asycHandler(async(req, res) => {
@@ -259,4 +223,31 @@ exports.postResetPassword = asycHandler(async(req, res) => {
       console.log("Error" + error);
       res.status(401).json({status:401,error})
   }
+});
+
+
+//set new password
+
+exports.setNewPassword = asycHandler(async(req, res) => {
+  const { password } = req.body;
+  const { token } = req.params;
+
+  // Find the user by the reset token
+  const user = await Userdata.findOne({ resetPasswordToken: token });
+
+  // If no user is found, or the token has expired, send an error response
+  if (!user || Date.now() > user.resetPasswordExpires) {
+    res.status(400).json({ message: "Password reset token is invalid or has expired." });
+    return;
+  }
+
+  // If the token is valid and has not expired, update the user's password and clear the reset token and expiry
+  user.password = password;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpires = undefined;
+
+  await user.save();
+
+  // Send a success response
+  res.status(200).json({ message: "Password has been reset." });
 });
