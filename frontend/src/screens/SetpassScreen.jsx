@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import {useSetNewPasswordMutation} from '../slices/usersApiSlice';
 import {setCredentials} from '../slices/authSlice';
+import FormContainer from '../components/FormContainer'
 
 const SetPassScreen = () => {
     const [password, setPassword] = useState('');
@@ -41,7 +42,7 @@ const SetPassScreen = () => {
     }
 
     return (
-        <>
+        <>< FormContainer>
             <h1>Set New Password</h1>
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='password' className='my-2'>
@@ -65,9 +66,10 @@ const SetPassScreen = () => {
                 </Form.Group>
 
                 <Button type='submit' variant='primary' className='my-2' disabled={isLoading}>
-                    {isLoading ? 'Loading...' : 'Set Password'}
+                    {isLoading ? 'Loading...' : 'Set New Password'}
                 </Button>
             </Form>
+            </FormContainer>
         </>
     )
 }
