@@ -58,6 +58,13 @@ export const usersApiSlice=apiSlice.injectEndpoints({
                 body:data,
             }),
             invalidatesTags:['Users']
+        }),
+        resetPassword:builder.mutation({
+            query:(email)=>({
+                url:`${USERS_URL}/reset`,
+                method:"POST",
+                body:{email},
+            })
         })
 
     }),
@@ -72,6 +79,7 @@ export const {useLoginMutation,
     useDeleteUserMutation,
     useGetUserDetailsQuery,
     useUpdateUserMutation,
+    useResetPasswordMutation,
 
 }=usersApiSlice;
 

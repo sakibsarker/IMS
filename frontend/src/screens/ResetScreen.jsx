@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
-import {RESET_URL} from '../constants'
+import {useResetPasswordMutation} from '../slices/usersApiSlice'
+
+// import {RESET_URL} from '../constants'
 
 const ResetScreen= () => {
 
@@ -10,34 +12,42 @@ const ResetScreen= () => {
 
     const [email, setEmail] = useState("");
 
+    const [resetPassword,{data,error}]=useResetPasswordMutation();
 
     const sendEmail = async (e) => {
         e.preventDefault();
 
-        const res = await fetch(RESET_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email
-            })
-        });
 
-        const data = await res.json();
-        console.log(data);
-
-        // if (data.status === 401 || !data) {
-        //     console.log("error")
-        // } 
-        if (!data || data.status !== 200) {
-            console.log("error")
-          }
-        else {
+        try {
+            await resetPassword(email);
             setShow(true);
-            setEmail("")
+            setEmail("");
             console.log("Email sent")
-        }
+          } catch (error) {
+            console.log("Error: ", error);
+          }
+
+
+        // const res = await fetch(RESET_URL, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         email
+        //     })
+        // });
+
+        // const data = await res.json();
+        // console.log(data);
+        // if (!data || data.status !== 200) {
+        //     console.log("error")
+        //   }
+        // else {
+        //     setShow(true);
+        //     setEmail("")
+        //     console.log("Email sent")
+        // }
     }
 
     return (
