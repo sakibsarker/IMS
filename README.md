@@ -7,7 +7,8 @@
 
 Player Dashboard
 ![screencapture-localhost-3000-dashboard-2023-08-07-00_14_44](https://github.com/sakibsarker/IMS/assets/95316668/87d79317-c681-4585-b25f-3a485f383b8b)
-![screencapture-localhost-3000-profile-2023-08-07-00_14_59](https://github.com/sakibsarker/IMS/assets/95316668/9fd5ff4b-5203-4832-9595-13e8bc88d47c)
+![screencapture-localh![screencapture-local![screencapture-localhost-3000-contactus-2023-08-07-00_11_11](https://github.com/sakibsarker/IMS/assets/95316668/ed50c00c-12d9-4bc2-a537-58a2f8ae6d8b)
+host-3000-2023-08-07-00_15_40](https://github.com/sakibsarker/IMS/assets/95316668/641a79c1-0a2f-466a-874c-7cd0bc01e87c)
+ost-3000-profile-2023-08-07-00_14_59](https://github.com/sakibsarker/IMS/assets/95316668/9fd5ff4b-5203-4832-9595-13e8bc88d47c)
 ![screencapture-localhost-3000-product-64c8c1acff6e340f6aa1f234-2023-08-07-00_15_23](https://github.com/sakibsarker/IMS/assets/95316668/87a947d1-7d46-461e-8c67-df20baa33937)
-![screencapture-localhost-3000-2023-08-07-00_15_40](https://github.com/sakibsark![screencapture-localhost-3000-contactus-2023-08-07-00_11_11](https://github.com/sakibsarker/IMS/assets/95316668/b628513a-ec13-4afe-af4d-445c438c0c11)
-er/IMS/assets/95316668/fc2dfdf1-5a4a-4ada-a865-ad8926024e3a)
+
