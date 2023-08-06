@@ -54,6 +54,9 @@ app.use('/uploads', express.static(path.resolve(__dirname, '../uploads')));
 console.log(path.join(__dirname, '../uploads'))
 
 
+
+
+
 app.use(notFound);
 app.use(errorHandler);
 

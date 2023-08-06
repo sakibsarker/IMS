@@ -5,5 +5,6 @@ export const USERS_URL='/api/users'
 export const PAYAPL_URL='/api/config/paypal'
 export const UPLOADS_URL='/api/upload'
 export const CONTACT_URL='/api/contactus'
+export const RESET_URL='/api/users/reset'
 
 

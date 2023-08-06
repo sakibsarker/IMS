@@ -1,81 +1,77 @@
-import React,{useState,useEffect} from 'react'
-import FormContainer from '../components/FormContainer'
-import {Link,useLocation,useNavigate} from 'react-router-dom'
-import { Container,Row,Col,Form ,Button} from 'react-bootstrap'
-import {useDispatch,useSelector} from 'react-redux'
-import Loader from '../components/Loader'
-import {useLoginMutation} from '../slices/usersApiSlice'
-import {setCredentials} from '../slices/authSlice'
-import { toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState } from 'react'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+import {RESET_URL} from '../constants'
 
-const ResetScreen = () => {
-  const[email,setEmail]=useState('');
-  const[password,setPassword]=useState('');
+const ResetScreen= () => {
 
-  const dispatch=useDispatch();
-  const navigate=useNavigate();
+    const [show, setShow] = useState(false);
 
-  const [login,{isLoading}]=useLoginMutation();
-  
-  const {userInfo}=useSelector((state)=>state.auth);
+    const [email, setEmail] = useState("");
 
-//re direct after login shipping
-  const {search}=useLocation();
-  const sp=new URLSearchParams(search);
-  const redirect=sp.get('redirect')||'/dashboard';
-  
-  useEffect(()=>{
-    if(userInfo){
-      navigate(redirect)
+
+    const sendEmail = async (e) => {
+        e.preventDefault();
+
+        const res = await fetch(RESET_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email
+            })
+        });
+
+        const data = await res.json();
+        console.log(data);
+
+        // if (data.status === 401 || !data) {
+        //     console.log("error")
+        // } 
+        if (!data || data.status !== 200) {
+            console.log("error")
+          }
+        else {
+            setShow(true);
+            setEmail("")
+            console.log("Email sent")
+        }
     }
-  },[userInfo,redirect,navigate])
 
-  const submitHandler=async(e)=>{
-    e.preventDefault()
-    try{
-      const res=await login({email,password}).unwrap();
-      dispatch(setCredentials({...res,}));
-      navigate(redirect);
+    return (
+        <>
+            {
+                show ? <Alert variant="primary" onClose={() => setShow(false)} dismissible>
+                    Your Email Succesfully Send
+                </Alert> : ""
+            }
+            <div className="container mt-2">
+                <div className='d-flex justify-content-center'>
+                    <h2>Send Email With React & NodeJs</h2>
+                    
+                </div>
+                <div className="d-flex justify-content-center">
+                    <Form className='mt-2 col-lg-6'>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>Enter Your Email</Form.Label>
+                            <Form.Control type="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email" />
+                        </Form.Group>
+                        <Button variant="primary" type="submit" onClick={sendEmail}>
+                            Send
+                        </Button>
+                    </Form>
+                </div>
 
-    }catch(error){
-      toast.error(error?.data?.message||error.error)
+            </div>
 
-    }
-  }
-
-  return (
-    <FormContainer>
-      <h1>Reset Password</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group controlId='email' className='my-3'>
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-          type='email'
-          placeholder='Enter email'
-          value={email}
-          onChange={(e)=>setEmail(e.target.value)}
-          
-          >
-
-          </Form.Control>
-        </Form.Group>
-
-      
-
-        <Button type='submit' value='primary' className='mt-2' disabled={isLoading}>Send Email</Button>
-        {isLoading && <Loader/>}
-      </Form>
-      <Row className='py-3'>
-        <Col>
-        New Customer? <Link to={redirect?`/register?redirect=${redirect}`:`/register`}>Register</Link>
-        </Col>
-        <Col>
-        <Link to={`/setpassword`}>New Password</Link>
-        </Col>
-      </Row>
-    </FormContainer>
-  )
+        </>
+    )
 }
 
 export default ResetScreen
+
+
+
+
