@@ -191,7 +191,7 @@ exports.postResetPassword = asycHandler(async(req, res) => {
 
   // update user reset password fields
   user.resetPasswordToken = token;
-  user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+  user.resetPasswordExpires = Date.now() + 300000; // 5 minutes
 
   await user.save();
 
@@ -208,7 +208,14 @@ exports.postResetPassword = asycHandler(async(req, res) => {
           from: process.env.EMAIL,
           to: email,
           subject: "Reset Password from Injury management system",
-          html: `<p>Click <a href='http://localhost:3000/reset/${token}'>here</a> to reset your password.</p>`
+          html: `<div style="font-family: Arial, sans-serif; text-align: center;">
+          <h2 style="color: #333;">Injury Management System</h2>
+          <p style="font-size: 16px; color: #666;">You have requested a password reset, please follow the link below to reset your password:</p>
+          <a style="display: inline-block; color: #ffffff; background-color: #007bff; padding: 10px 20px; text-decoration: none; margin: 20px 0; border-radius: 5px;" href="http://localhost:3000/reset/${token}">Reset Password</a>
+          <p style="font-size: 14px; color: #666;">Please note, this link will expire in 5 minutes.</p>
+          <hr/>
+          <p style="font-size: 14px; color: #999;">&copy; 2023 Injury Management System. All Rights Reserved.</p>
+        </div>`
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
