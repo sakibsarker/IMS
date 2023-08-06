@@ -27,6 +27,8 @@ import UserEditScreen from './screens/admin/UserEditScreen'
 import ContactUs from './screens/ContactUs'
 import MessageScreen from './screens/admin/MessageScreen'
 import MainScreen from './screens/MainScreen'
+import ResetScreen from './screens/ResetScreen'
+import SetpassScreen from './screens/SetpassScreen'
 
 
 const router=createBrowserRouter(
@@ -40,6 +42,9 @@ const router=createBrowserRouter(
       <Route path='/login' element={<LoginScreen/>}/>
       <Route path='/register' element={<RegisterScreen/>}/>
       <Route path='/contactus' element={<ContactUs/>}/>
+      <Route path='/reset' element={<ResetScreen/>}/>
+      <Route path='/setpassword' element={<SetpassScreen/>}/>
+      
      
 
 
