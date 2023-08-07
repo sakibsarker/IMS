@@ -33,12 +33,12 @@ exports.getSingleProduct = asycHandler(async(req, res) => {
 exports.createProduct=asycHandler(async (req, res) => {
   const product=new productsdata({
     name:'Sample name',
-    price:0,
+    price:'sample',
     user:req.user._id,
     image:'/images/airpods.jpg',
     brand:'Sample Brand',
     category: 'Sample category',
-    countInStock:0,
+    countInStock:'sample',
     numReviews:0,
     description:'Sample description',
   })

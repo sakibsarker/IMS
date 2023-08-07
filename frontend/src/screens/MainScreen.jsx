@@ -28,7 +28,7 @@ const MainScreen = () => {
           <Card className="mb-3 h-100">
             <Card.Body>
               <MdOutlinePersonalInjury size={30} />
-              <Card.Title>Injured Player</Card.Title>
+              <Card.Title>Injured List</Card.Title>
             </Card.Body>
           </Card>
         </Link>
@@ -63,7 +63,7 @@ const MainScreen = () => {
           <Card className="mb-3 h-100">
             <Card.Body>
               <RiTeamLine size={30} />
-              <Card.Title>Player List</Card.Title>
+              <Card.Title>Add Player</Card.Title>
             </Card.Body>
           </Card>
         </Link>

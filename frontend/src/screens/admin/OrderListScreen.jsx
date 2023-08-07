@@ -14,11 +14,8 @@ import "react-toastify/dist/ReactToastify.css";
 const OrderListScreen = () => {
 
   const {data:message,isLoading,error}=useGetContactDetailsQuery();
-  console.log(message)
-
-
   return <>
-  <h1>Contact Us List</h1>
+  <h1>Messages</h1>
   {isLoading?<Loader/>
   :error?<Message variant="Danger">{error?.data?.message||error.message}</Message>
   :(
@@ -27,7 +24,7 @@ const OrderListScreen = () => {
         <tr>
            <th>Date</th>
            <th>Time</th>
-           <th>Email</th>
+           <th>Name</th>
            <th>Message</th>
         </tr>
     </thead>

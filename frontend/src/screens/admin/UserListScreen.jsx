@@ -36,7 +36,7 @@ const  UserListScreen = () => {
   return <>
   <Row className="align-items-center">
       <Col>
-        <h1>Players List</h1>
+        <h1> Add Player</h1>
       </Col>
       <Col className="text-end">
         <Button className="btn-sm m-3">

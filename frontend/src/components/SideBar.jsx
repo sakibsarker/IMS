@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLogoutMutation } from '../slices/usersApiSlice'
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { ListGroup } from 'react-bootstrap'
 
 const Sidebar = () => {
+  
   const { userInfo } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -51,13 +52,13 @@ const Sidebar = () => {
           {userInfo.isAdmin && (
             <>
               <ListGroup.Item>
-                <Link style={{ textDecoration: 'none' }} to='/admin/userlist'>Player List</Link>
+                <Link style={{ textDecoration: 'none' }} to='/admin/userlist'>Add Player</Link>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Link style={{ textDecoration: 'none' }} to='/admin/productlist'>Add Injury</Link>
               </ListGroup.Item>
               <ListGroup.Item>
-                <Link style={{ textDecoration: 'none' }} to='/admin/orderlist'>Message List</Link>
+                <Link style={{ textDecoration: 'none' }} to='/admin/orderlist'>Messages</Link>
               </ListGroup.Item>
             </>
           )}
