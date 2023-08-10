@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import { Container, Row, Col,Table } from 'react-bootstrap';
-import Product from '../components/Product';
+import Player from '../components/Player';
 import { useGetProductsQuery } from '../slices/productsApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -31,7 +31,7 @@ const HomeScreen = () => {
     
         {data.product.map((productt) => (
           <Col className='table-sm w-100' key={productt._id} sm={12} md={6} lg={4} xl={3}>
-            <Product prduct={productt}/>
+            <Player prduct={productt}/>
           </Col>
         ))}
    </>

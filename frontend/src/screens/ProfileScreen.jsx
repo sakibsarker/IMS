@@ -58,6 +58,10 @@ const ProfileScreen = () => {
             }
         }
     }
+    console.log('Name:', name);
+    console.log('Products:', data?.product);
+
+
 
   return (
    <Row>
@@ -116,16 +120,16 @@ const ProfileScreen = () => {
         </tr>
     </thead>
     <tbody>
-        {data.product.filter(productt => productt.name === name).map((productt) =>(
-            <tr key={productt._id}>
-                <td>{productt.name}</td>
-                <td>{productt.price}</td>
-                <td>{productt.brand}</td>
-                <td>{productt.category}</td>
-                <td>{productt.countInStock}</td>
-                <td><Link to={`/product/${productt._id}`}>View</Link></td>
-            </tr>
-        ))}
+    {data?.product.filter(productt => productt.name === name).map((productt) => (
+    <tr key={productt._id}>
+        <td>{productt.name}</td>
+        <td>{productt.dateOf}</td>
+        <td>{productt.brand}</td>
+        <td>{productt.category}</td>
+        <td>{productt.countInStock}</td>
+        <td><Link to={`/player/${productt._id}`}>View</Link></td>
+    </tr>
+))}
     </tbody>
    </Table>
    </>

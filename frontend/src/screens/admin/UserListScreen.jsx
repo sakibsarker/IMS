@@ -36,13 +36,13 @@ const  UserListScreen = () => {
   return <>
   <Row className="align-items-center">
       <Col>
-        <h1> Add Player</h1>
+        <h1>Player List</h1>
       </Col>
-      <Col className="text-end">
+      {/* <Col className="text-end">
         <Button className="btn-sm m-3">
         <FaEdit/> Create User
         </Button>
-      </Col>
+      </Col> */}
     </Row>
   {loadingDelete && <Loader/>}
   {isLoading?<Loader/>

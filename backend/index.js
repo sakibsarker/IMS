@@ -8,9 +8,8 @@ const cors=require('cors');
 
 //route import form another file
 // const HomeRoutes = require('./routes/HomeRoute');
-const ProductRoutes=require('./routes/ProductRoute');
+const ProductRoutes=require('./routes/PlayerRoute');
 const UserRoutes=require('./routes/UserRoute');
-const OrderRoutes=require('./routes/OrderRoute');
 const UploadRoutes=require('./routes/UploadRoute');
 const ContactRoutes=require('./routes/ContactRoute');
 
@@ -41,8 +40,6 @@ app.use('/api/products',ProductRoutes);
 app.use('/api/contactus',ContactRoutes);
 
 app.use('/api/users',UserRoutes);
-
-app.use('/api/orders',OrderRoutes);
 
 app.use('/api/upload',UploadRoutes);
 

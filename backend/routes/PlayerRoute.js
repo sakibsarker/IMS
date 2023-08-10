@@ -7,14 +7,12 @@ const {getAllproducts,
     updateProduct,
     deleteProduct,
     createProductReview,
-    getTopProduct
-} = require('../controller/ProductController');
+} = require('../controller/PlayerController');
 
 
 const {protect,admin}=require('../middleware/authMiddleware');
 
 router.route('/').get(protect,getAllproducts).post(protect,admin,createProduct);
-router.route('/top').get(getTopProduct);
 router.route('/:id').get(getSingleProduct)
 .put(protect,admin,updateProduct)
 .delete(protect,admin,deleteProduct);

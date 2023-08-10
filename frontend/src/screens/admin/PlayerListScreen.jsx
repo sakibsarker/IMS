@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useParams } from 'react-router-dom';
 import Paginate from '../../components/Paginate';
-const ProductListScreen = () => {
+const PlayerListScreen = () => {
 
   const {pageNumber}=useParams();
 
@@ -81,7 +81,7 @@ const ProductListScreen = () => {
             <tr key={productt._id}>
               {/* <td>{productt._id}</td> */}
               <td>{productt.name}</td>
-              <td>{productt.price}</td>
+              <td>{productt.dateOf}</td>
               <td>{productt.category}</td>
               <td>{productt.brand}</td>
               <td>{productt.countInStock}</td>
@@ -105,4 +105,4 @@ const ProductListScreen = () => {
   )
 }
 
-export default ProductListScreen
+export default PlayerListScreen

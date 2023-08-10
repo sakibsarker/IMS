@@ -11,13 +11,14 @@ import { useSelector,useDispatch } from 'react-redux/';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Autosuggest from 'react-autosuggest';
+import Select from 'react-select';
 
-const ProductEditScreen = () => {
+const InjuryEditScreen = () => {
 
     const {id:productId}=useParams();
 
     const [name,setName]=useState('');
-    const [price,setPrice]=useState(0);
+    const [dateOf,setdateOf]=useState(0);
     const [image,setImage]=useState('');
     const [brand,setBrand]=useState('');
     const [category,setCategory]=useState('');
@@ -32,33 +33,62 @@ const ProductEditScreen = () => {
 
 
 // add
-const [validationError, setValidationError] = useState(null);
+// const [validationError, setValidationError] = useState(null);
+
+
     const {data:users, isLoading:usersLoading, error:usersError} = useGetUsersQuery();
 
-    const [suggestions, setSuggestions] = useState([]);
-
-
-    const getSuggestions = value => {
-        const inputValue = value.trim().toLowerCase();
-        const inputLength = inputValue.length;
-
-        return inputLength === 0 ? [] : users.filter(user =>
-            user.name.toLowerCase().slice(0, inputLength) === inputValue
-        );
-    };
-
-    const getSuggestionValue = suggestion => suggestion.name;
-
-    const theme = {
-        input: 'form-control',
-        inputOpen: 'form-control',
-        inputFocused: 'form-control',
-        suggestionsContainer: 'dropdown',
-        suggestionsContainerOpen: 'dropdown open',
-        suggestionsList: `dropdown-menu ${suggestions.length ? 'show' : ''}`,
-        suggestion: 'dropdown-item',
-        suggestionHighlighted: 'dropdown-item active'
+    const customStyles = {
+        control: provided => ({
+          ...provided,
+          minHeight: 'calc(2em + .75rem + 2px)', // match Bootstrap's form-control height
+          borderRadius: '.25rem', // match Bootstrap's border radius
+          borderColor: '#ced4da', // match Bootstrap's border color
+          boxShadow: 'none', // remove default react-select's box shadow
+          '&:hover': {
+            borderColor: '#ced4da' // match Bootstrap's border color on hover
+          }
+        }),
+        option: (provided, state) => ({
+          ...provided,
+          backgroundColor: state.isSelected ? '#7B8A8B' : state.isFocused ? '#f8f9fa' : null,
+          color: state.isSelected ? 'white' : 'black',
+          padding: '.55rem .5rem' // match padding for Bootstrap's dropdown items
+        }),
+        menu: provided => ({
+          ...provided,
+          borderRadius: '.35rem' // match Bootstrap's dropdown menu border radius
+        }),
+        singleValue: provided => ({
+          ...provided,
+          color: '#7B8A8B' // match Bootstrap's form-control text color
+        }),
       };
+
+    // const [suggestions, setSuggestions] = useState([]);
+
+
+    // const getSuggestions = value => {
+    //     const inputValue = value.trim().toLowerCase();
+    //     const inputLength = inputValue.length;
+
+    //     return inputLength === 0 ? [] : users.filter(user =>
+    //         user.name.toLowerCase().slice(0, inputLength) === inputValue
+    //     );
+    // };
+
+    // const getSuggestionValue = suggestion => suggestion.name;
+
+    // const theme = {
+    //     input: 'form-control',
+    //     inputOpen: 'form-control',
+    //     inputFocused: 'form-control',
+    //     suggestionsContainer: 'dropdown',
+    //     suggestionsContainerOpen: 'dropdown open',
+    //     suggestionsList: `dropdown-menu ${suggestions.length ? 'show' : ''}`,
+    //     suggestion: 'dropdown-item',
+    //     suggestionHighlighted: 'dropdown-item active'
+    //   };
 
     // add
 
@@ -69,7 +99,7 @@ const [validationError, setValidationError] = useState(null);
     useEffect(()=>{
         if(product){
            setName(product.name);
-           setPrice(product.price);
+           setdateOf(product.dateOf);
            setImage(product.image);
            setBrand(product.brand);
            setCategory(product.category);
@@ -92,7 +122,7 @@ const [validationError, setValidationError] = useState(null);
         const updatedProduct={
             productId,
             name,
-            price,
+            dateOf,
             image,
             brand,
             category,
@@ -134,10 +164,25 @@ const [validationError, setValidationError] = useState(null);
         {loadingUpdating && <Loader/>}
         {
         
-            isLoading?<Loader/>
-            :error?<Message variant='danger'>{error}</Message>:(
+            isLoading || usersLoading ?<Loader/>
+            :error || usersError?<Message variant='danger'>{error || usersError}</Message>:(
+                
                 <Form onSubmit={submitHandler}>
-                    <Form.Group controlId='name'>
+
+<Form.Group controlId='name'>
+                <Form.Label>Player Name</Form.Label>
+                {/* Make sure users data exists before mapping */}
+                {users && (
+                  <Select 
+                  styles={customStyles}
+                    options={users.map(user => ({ value: user._id, label: user.name }))}
+                    onChange={(selectedOption) => setName(selectedOption.label)}
+                  />
+                )}
+             </Form.Group>
+                    
+
+                    {/* <Form.Group controlId='name'>
                         <Form.Label>Player Name</Form.Label>
                         <Autosuggest
                                     theme={theme}
@@ -159,15 +204,15 @@ const [validationError, setValidationError] = useState(null);
                                     }}
                                 />
                                 {validationError && <div className="invalid-feedback d-block">{validationError}</div>}
-                    </Form.Group>
+                    </Form.Group> */}
 
-                    <Form.Group controlId='price'>
+                    <Form.Group controlId='dateOf'>
                         <Form.Label>Date of Birth</Form.Label>
                         <Form.Control
                         type='data'
                         placeholder='Enter date'
-                        value={price}
-                        onChange={(e)=>setPrice(e.target.value)}
+                        value={dateOf}
+                        onChange={(e)=>setdateOf(e.target.value)}
                         >
                         </Form.Control>
                     </Form.Group>
@@ -245,4 +290,4 @@ const [validationError, setValidationError] = useState(null);
   )
 }
 
-export default ProductEditScreen
+export default InjuryEditScreen

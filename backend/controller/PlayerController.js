@@ -1,5 +1,5 @@
 const asycHandler =require('../middleware/asyncHandler')
-const productsdata=require('../model/productModel');
+const productsdata=require('../model/playerModel');
 
 exports.getAllproducts =asycHandler(async (req, res) => {
 
@@ -33,7 +33,7 @@ exports.getSingleProduct = asycHandler(async(req, res) => {
 exports.createProduct=asycHandler(async (req, res) => {
   const product=new productsdata({
     name:'Sample name',
-    price:'sample',
+    dateOf:'sample',
     user:req.user._id,
     image:'/images/airpods.jpg',
     brand:'Sample Brand',
@@ -48,11 +48,11 @@ exports.createProduct=asycHandler(async (req, res) => {
 
 
 exports.updateProduct=asycHandler(async (req, res) => {
-  const {name,price,description,image,brand,category,countInStock}=req.body;
+  const {name,dateOf,description,image,brand,category,countInStock}=req.body;
   const product=await productsdata.findById(req.params.id)
   if(product){
     product.name=name;
-    product.price=price;
+    product.dateOf=dateOf;
     product.description=description;
     product.image=image;
     product.brand=brand;
@@ -127,10 +127,3 @@ exports.createProductReview=asycHandler(async (req, res) => {
   
 });
 
-//top product
-
-exports.getTopProduct = asycHandler(async(req, res) => {
-  console.log(req.params.id);
-  const product=await productsdata.find({}).sort({rating:-1}).limit(3);
-  res.status(200).json(product);
-});

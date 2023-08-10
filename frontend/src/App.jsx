@@ -14,20 +14,6 @@ function App() {
   return (
     <>
       <Header />
-      {/* <Row>
-        {userInfo && (
-          <Col md={2}>
-            <Sidebar />
-          </Col>
-        )}
-        <Col md={userInfo ? 10 : 12}>
-          <main>
-            <Container>
-              <Outlet />
-            </Container>
-          </main>
-        </Col>
-      </Row> */}
      <div style={{ paddingTop: "56px" }}>
         <Row style={{ marginRight: "0", marginLeft: "0" }}>
           {userInfo && (

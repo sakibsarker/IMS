@@ -52,13 +52,13 @@ const Sidebar = () => {
           {userInfo.isAdmin && (
             <>
               <ListGroup.Item>
-                <Link style={{ textDecoration: 'none' }} to='/admin/userlist'>Add Player</Link>
+                <Link style={{ textDecoration: 'none' }} to='/admin/userlist'>Player List</Link>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Link style={{ textDecoration: 'none' }} to='/admin/productlist'>Add Injury</Link>
               </ListGroup.Item>
               <ListGroup.Item>
-                <Link style={{ textDecoration: 'none' }} to='/admin/orderlist'>Messages</Link>
+                <Link style={{ textDecoration: 'none' }} to='/admin/messagelist'>Messages</Link>
               </ListGroup.Item>
             </>
           )}

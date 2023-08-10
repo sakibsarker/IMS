@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 
-const OrderListScreen = () => {
+const MessageListScreen = () => {
 
   const {data:message,isLoading,error}=useGetContactDetailsQuery();
   return <>
@@ -49,4 +49,4 @@ const OrderListScreen = () => {
   </>
 }
 
-export default OrderListScreen
+export default MessageListScreen

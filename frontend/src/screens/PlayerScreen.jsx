@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import Meta from '../components/Meta';
 
-const ProductScreen = () => {
+const PlayerScreen = () => {
 
 
   const{id:productId}=useParams()
@@ -67,14 +67,6 @@ const ProductScreen = () => {
     marginRight: 'auto',
     marginBottom: '10px'
   }}/>
-          {/* <Image style={{
-    height: '50px', 
-    borderRadius: '50px', 
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginBottom: '10px'
-  }} src={products.image} alt={products.image} fluid/> */}
 
 <Form >
   <Form.Group controlId='name'>
@@ -91,7 +83,7 @@ const ProductScreen = () => {
     <Form.Label>Date of Birth</Form.Label>
     <Form.Control
     type='text'
-    value={products.price}
+    value={products.dateOf}
     disabled>
     </Form.Control>
   </Form.Group>
@@ -193,4 +185,4 @@ const ProductScreen = () => {
   )
 }
 
-export default ProductScreen
+export default PlayerScreen
